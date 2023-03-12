@@ -1,0 +1,27 @@
+<div class='w-80 mt-5'>
+<h4>Employee Listing</h4>
+<table class="table table-hover table-striped table-sm">
+    <thead>
+        <tr>
+            <th scope="col"></th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Email</th>
+            <th scope="col">Hour Requirement/Week</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for employee in employees %}
+        <tr>
+            <th scope="row"><a href="/employee_edit/{{employee['id']}}">Edit</a></th>
+            <td>{{employee['first_name']}}</td>
+            <td>{{employee['last_name']}}</td>
+            <td>{{employee['phone']}}</td>
+            <td>{{employee['email']}}</td>
+            <td>{{employee['hours_requirement']}}</td>
+        </tr>
+        {% endfor %}
+  </tbody>
+</table>
+</div>

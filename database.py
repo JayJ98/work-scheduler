@@ -1,6 +1,5 @@
 import os
 from sqlalchemy import create_engine, text
-import pymysql
 
 secret_db_connection_string = os.environ['DB_CONNECTION_STRING']
 
@@ -20,6 +19,15 @@ def load_employees():
     with engine.connect() as conn:
         result = conn.execute(text("SELECT * FROM employee"))
         for row in result:
-            print(type(row._asdict()))
             EMPLOYEES.append(row._asdict())
         return EMPLOYEES
+
+
+def load_employee(id):
+    EMPLOYEE = []
+    with engine.connect() as conn:
+        query_string = text('SELECT * FROM employee WHERE id = :id')
+        result = conn.execute(query_string, [{'id': id}])
+        for row in result:
+            EMPLOYEE.append(row._asdict())
+        return EMPLOYEE
